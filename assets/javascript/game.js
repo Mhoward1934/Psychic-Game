@@ -1,9 +1,8 @@
-//var x = Math.floor(Math.random() * 4) + 1;
+//Setting variables and zeroing counters
 
-var wins = 0;
-var losses = 0;
-var guessesLeft = 10;
-var yourGuesses = [];
+var won = 0;
+var lost = 0;
+var guessesLeft = 9;
 var usedLetters = [];
 var computerChoices = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'];
 
@@ -14,38 +13,54 @@ function jsGuess() {
 }
 jsGuess();
 
+//Capturing player input
 //.onkeyup captures the players input as playerGuess
 document.onkeyup = function (event) {
-    var yourGuesses = event.key;
+    var sofar = event.key;
+    //stats();
 }
-if (usedLetters.indexOf(yourGuesses) >= 0) {
+//Handeling guesses - output
+//This "if" prevents a letter selected a 2nd time from being written over
+if (usedLetters.indexOf(sofar) >= 0) {
 
 } else {
-    usedLetters.push(yourGuesses);
-    document.getElementById('yourGuesses').innerHTML = usedLetters;
-    console.log(usedLetters);    
+    //this pushes the players incorrect guess to the usedLetters array
+    usedLetters.push(sofar);
+    document.getElementById("sofar").innerHTML = usedLetters;
+    //console.log(usedLetters);
 }
-//taking in user guess
-//var userGuess = String.fromCharCode(event.data).toLowerCase();
-//computer selects random letter
-//var computerGuess = computerChoices[Math.floor(Math.random() * computerChoices.length)];
-//yourGuesses.push(userGuess); //pushing user guess to guesses so far
-//if (userGuess == computerGuess) {
-  //  wins++;
-    //alert('Way to go! You Won!');
-    //guessesLeft = 10; //reseting the guesses back to 10 so that the user can play again
-    //yourGuesses.length = 0; //this removes everything from the guesses so far array, so that the guesses from the previous round don't show
-//}
-if (guessesLeft == 0) {
-    losses++;
-    alert('You didn\'t guess the correct letter. You lost. Let\'s try again.');
-    guessesLeft = 10;
-    yourGuesses.length = 0;
+//Handeling guesses
+//Test if players guess does not equal ranLetter and decriments guessLeft
+if (sofar !== ranLetter) {
+    guessesLeft--;
+} else {
+    won++;
+    guessesLeft = 9;
+    usedLetters = [];
+    jsGuess();
+    alert("You did it!");
 }
-else if (userGuess !== computerGuess) {
-    guessesLeft--; //decrementing the guesses left
+//When guessLeft equals zero, lost is incrimented by 1; guessLeft is reset to 9
+if (guessesLeft === 0){
+    lost++;
+    usedLetters = [];
+    guessesLeft = 9;
+    jsGuess();
+    alert("Try again!");
 }
-//function jsGuess() {
-    //ranLetter = computerChoices[Math.floor(Math.random() * computerChoices.length)];
-    //console.log(ranLetter);
-//}
+
+//OUTPUT TO HTML
+//these statements write the value/scores generated to the HTML
+document.getElementById("wins").innerHTML = won;
+document.getElementById("losses").innerHTML = lost;
+document.getElementById("sofar").innerHTML = sofar;
+
+
+
+/*function stats()
+{
+    console.log("Wins: " + wins);
+    console.log("Loses: " + losses);
+    console.log("Num Guesses Left: " + guessesLeft);
+    console.log("Prev Guses: " + sofar);
+}*/
