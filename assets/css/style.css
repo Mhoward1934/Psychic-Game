@@ -1,19 +1,7 @@
-.jumbotron {
-    color: navy;
-}
 
 h1 {
+    color: navy;
     margin: 50px;
     text-align: center;
 }
 
-img {
-    margin-top: 0px;
-    max-width: 100%;
-    height: auto;
-    opacity: 0.3;
-}
-
-.container {
-    margin-top:  200px;
-}
