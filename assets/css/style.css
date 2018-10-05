@@ -1,7 +1,22 @@
+body {
+    background-image: url("../images/mixed-scrabble-letters.jpg");
+    background-image: width 100%;
+}
 
-h1 {
-    color: navy;
-    margin: 50px;
+#game h1 {
+    padding-top: 10px;
     text-align: center;
+    color: rgb(1, 73, 1)
+}
+
+#game h2 {
+    margin-left: 50px;
+    font-family: cursive;
+}
+
+#game p {
+    font-size: 24px;
+    color: blue;
+    margin-left: 100px;
 }
 
