@@ -23,51 +23,47 @@ jsGuess();
 //.onkeyup captures the players input as soFar
 document.onkeyup = function (event) {
     var soFar = event.key;
-    console.log(soFar);
-    //stats();
-}
-//Handeling guesses - output
-//This "if" prevents a letter selected a 2nd time from being written over, it still counts as a guess
-if (usedLetters.indexOf(soFar) >= 0) {
-
-} else {
-    //this pushes the players incorrect guess to the usedLetters array
-    usedLetters.push(soFar);
-    document.getElementById("soFar").innerHTML = usedLetters;
-    //console.log(usedLetters);
-}
-//Handeling correct guesses
-//Test if players guess equals ranLetter it increments wins by 1, and clears usedLetters array.
-if (soFar === ranLetter) {
-    won++;
-    guessesLeft = 10;
-    usedLetters = [];
-    jsGuess();
-    alert("You did it!");
     //console.log(soFar);
+    //stats();
+
+    //Handeling guesses - output
+    //This "if" prevents a letter selected a 2nd time from being written over, it still counts as a guess
+    if (usedLetters.indexOf(soFar) >= 0) {
+
+    } else {
+        //this pushes the players incorrect guess to the usedLetters array
+        usedLetters.push(soFar);
+        document.getElementById("soFar").innerHTML = usedLetters;
+        //console.log(usedLetters);
+    }
+    //Handeling guesses
+    //Test if players guess equals ranLetter it increments wins by 1, and clears usedLetters array.
+    if (soFar !== ranLetter) {
+        guessesLeft--;
+    } else {
+        won += 1;
+        guessesLeft = 10;
+        usedLetters = [];
+        jsGuess();
+        alert("You did it!");
+        //console.log(ranLetter);
+    }
+    //When guessesLeft equals zero, lost is incrimented by 1; guessesLeft is reset to 10, and clears usedLetters array
+   if (guessesLeft === 0) {
+        lost++;
+        usedLetters = [];
+        guessesLeft = 10;
+        jsGuess();
+        alert("Try again!");
+    }
 }
-//HANDELING INCORRECT GUESSES
-//tests if players guess Does Not Equal ranLetter and decriments guessesLeft by 1
-jsGuess();
-if (soFar !== ranLetter) {
-    guessesLeft--;
-}
-//When guessesLeft equals zero, lost is incrimented by 1; guessesLeft is reset to 10, and clears usedLetters array
-if (guessesLeft === 0) {
-    lost++;
-    usedLetters = [];
-    guessesLeft = 10;
-    jsGuess();
-    alert("Try again!");
-}
+
 //OUTPUT TO HTML
 //these statements write the value/scores generated to the HTML
 document.getElementById("wins").innerHTML = won;
 document.getElementById("losses").innerHTML = lost;
 document.getElementById("guessesLeft").innerHTML = guessesLeft;
 //document.getElementById("soFar").innerHTML = usedLetters;
-
-
 
 /*function stats()
 {
