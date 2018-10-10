@@ -56,14 +56,15 @@ document.onkeyup = function (event) {
         jsGuess();
         alert("Try again!");
     }
-}
-
 //OUTPUT TO HTML
 //these statements write the value/scores generated to the HTML
 document.getElementById("wins").innerHTML = won;
 document.getElementById("losses").innerHTML = lost;
 document.getElementById("guessesLeft").innerHTML = guessesLeft;
 //document.getElementById("soFar").innerHTML = usedLetters;
+}
+
+
 
 /*function stats()
 {
